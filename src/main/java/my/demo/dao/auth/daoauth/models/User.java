@@ -10,10 +10,13 @@ package my.demo.dao.auth.daoauth.models;
  */
 
 
+import lombok.Data;
+
 import javax.persistence.*;
 import java.util.HashSet;
 import java.util.Set;
 
+@Data
 @Entity
 @Table(name = "users",
         uniqueConstraints = {
@@ -25,7 +28,6 @@ public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-
     private String username;
     private String email;
     private String password;
@@ -36,8 +38,7 @@ public class User {
                 inverseJoinColumns = @JoinColumn(name = "role_id"))
     private Set<Role> roles = new HashSet<>();
 
-    public User() {
-    }
+    public User() {}
 
     public User(String username, String email, String password) {
         this.username = username;
@@ -84,4 +85,5 @@ public class User {
     public void setRoles(Set<Role> roles) {
         this.roles = roles;
     }
+
 }
